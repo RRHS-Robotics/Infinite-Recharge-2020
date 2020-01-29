@@ -3,6 +3,7 @@ package frc.robot.commands;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -105,6 +106,21 @@ public class ColorCommand extends Command {
 				}
 			} else {
 				isColorDetermined = true;
+				if (!Robot.debug) {
+					switch (DriverStation.getInstance().getGameSpecificMessage().charAt(0)) {
+						case 'G':
+							color = Color.GREEN; break;
+						case 'Y':
+							color = Color.YELLOW; break;
+						case 'R':
+							color = Color.RED; break;
+						case 'B':
+							color = Color.BLUE; break;
+						default:
+							isColorDetermined = false; break;
+					}
+					return;
+				}
 				if (Robot.refOI.greenButton()) {
 					color = Color.GREEN;
 				} else if (Robot.refOI.yellowButton()) {

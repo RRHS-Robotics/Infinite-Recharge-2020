@@ -7,9 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -47,13 +46,8 @@ public class OI {
 	
 	public XboxController controller = new XboxController(0);
 	
-	Button intakeForward = new JoystickButton(controller, 1);
-	Button intakeReverse = new JoystickButton(controller, 2);
-	Button lowerIntake = new JoystickButton(controller, 5);
-	Button raiseIntake = new JoystickButton(controller, 6);
-	
 	public boolean invertMotorButton() {
-		return controller.getStartButtonPressed();
+		return controller.getStickButtonPressed(Hand.kLeft);
 	}
 	
 	public boolean spinFourButton() {
@@ -78,5 +72,8 @@ public class OI {
 	}
 	public boolean yellowButtonHeld() {
 		return controller.getYButton();
+	}
+	public double intakeButton() {
+		return controller.getTriggerAxis(Hand.kLeft);
 	}
 }

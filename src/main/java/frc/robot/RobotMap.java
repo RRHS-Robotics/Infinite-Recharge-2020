@@ -7,7 +7,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -28,10 +28,10 @@ public class RobotMap {
 	public static Timer masterTimer = new Timer();
 	
 	//START Drive Motor Map
-	public static WPI_VictorSPX frontLeftMotor = new WPI_VictorSPX(0); //Victor SPX ID
-	public static WPI_VictorSPX frontRightMotor = new WPI_VictorSPX(1); //Victor SPX ID
-	public static WPI_VictorSPX rearRightMotor = new WPI_VictorSPX(2); //Victor SPX ID
-	public static WPI_VictorSPX rearLeftMotor = new WPI_VictorSPX(3); //Victor SPX ID
+	public static WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(0); //Talon SRX ID
+	public static WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(1); //Talon SRX ID
+	public static WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(2); //Talon SRX ID
+	public static WPI_TalonSRX rearLeftMotor = new WPI_TalonSRX(3); //Talon SRX ID
 	
 	public static SpeedControllerGroup leftDrive = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
 	public static SpeedControllerGroup rightDrive = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
@@ -40,6 +40,7 @@ public class RobotMap {
 	//END Drive Motor Map
 	
 	public static Spark colorMotor = new Spark(0);
+	public static Spark intakeMotor = new Spark(1);
 	
 	public static ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 	public static AnalogInput ultrasonic = new AnalogInput(2);

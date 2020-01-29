@@ -10,7 +10,7 @@ public class DriveCommand extends Command {
 	
 	private Double speed;
 	private Double rotation;
-	private Boolean invert = false;
+	private Boolean invert = true;
 	
 	Preferences prefs = Preferences.getInstance();
     
