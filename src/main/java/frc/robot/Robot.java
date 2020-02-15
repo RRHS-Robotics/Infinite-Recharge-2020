@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.AutoModeCommandGroup;
 import frc.robot.commands.ColorCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
@@ -49,6 +52,8 @@ public class Robot extends TimedRobot {
 	ColorCommand colorCommand = new ColorCommand();
 	IntakeCommand intakeCommand = new IntakeCommand();
 	OuttakeCommand outtakeCommand = new OuttakeCommand();
+	
+	SendableChooser<String> autoChooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -61,8 +66,11 @@ public class Robot extends TimedRobot {
 		
 		RobotMap.robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
 		
-		RobotMap.pixy.init(2);
-		RobotMap.pixy.setLED(2, 100, 66);
+		autoChooser.setDefaultOption("Left", "left");
+		autoChooser.addOption("Middle", "middle");
+		autoChooser.addOption("Right", "right");
+		
+		SmartDashboard.putData("Auto Mode:", autoChooser);
 	}
 
 	/**
@@ -76,6 +84,7 @@ public class Robot extends TimedRobot {
 	}
 
 	Color oldColor;
+	private AutoModeCommandGroup selectedAutonomousCommand;
 	
 	@Override
 	public void disabledPeriodic() {
@@ -94,7 +103,12 @@ public class Robot extends TimedRobot {
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
-	public void autonomousInit() {}
+	public void autonomousInit() {
+		selectedAutonomousCommand = new AutoModeCommandGroup(autoChooser.getSelected());
+		if (selectedAutonomousCommand!=null) {
+			selectedAutonomousCommand.start();
+		}
+	}
 
 	/**
 	 * This function is called periodically during autonomous.
