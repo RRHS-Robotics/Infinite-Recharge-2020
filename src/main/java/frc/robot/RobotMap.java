@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.Pixy2.LinkType;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -41,7 +43,11 @@ public class RobotMap {
 	
 	public static Spark colorMotor = new Spark(0);
 	public static Spark intakeMotor = new Spark(1);
+	public static Spark outtakeMotor = new Spark(2);
+	public static Spark outtakeMotor0 = new Spark(3);
 	
 	public static ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 	public static AnalogInput ultrasonic = new AnalogInput(2);
+	
+	public static Pixy2 pixy = Pixy2.createInstance(LinkType.UART);
 }

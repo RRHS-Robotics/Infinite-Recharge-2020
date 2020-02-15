@@ -76,4 +76,7 @@ public class OI {
 	public double intakeButton() {
 		return controller.getTriggerAxis(Hand.kLeft);
 	}
+	public Double outtakeButton() {
+		return controller.getTriggerAxis(Hand.kRight);
+	}
 }

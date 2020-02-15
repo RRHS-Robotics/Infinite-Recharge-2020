@@ -9,8 +9,6 @@ package frc.robot;
 
 import java.awt.Color;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,8 +17,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.commands.ColorCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.OuttakeCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.OuttakeSubsystem;
 import frc.robot.subsystems.UltrasonicSubsystem;
 import frc.robot.subsystems.WheelSubsystem;
 
@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
 	public static final WheelSubsystem wheelSubsystem = new WheelSubsystem();
 	public static final UltrasonicSubsystem ultrasonic = new UltrasonicSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+	public static final OuttakeSubsystem outtakeSubsystem = new OuttakeSubsystem();
 	public static OI refOI = new OI();
 	public static RobotMap robotMap = new RobotMap();
 	
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
 	Command driveTrainCommand = new DriveCommand();
 	ColorCommand colorCommand = new ColorCommand();
 	IntakeCommand intakeCommand = new IntakeCommand();
+	OuttakeCommand outtakeCommand = new OuttakeCommand();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -57,10 +59,10 @@ public class Robot extends TimedRobot {
 		prefs = Preferences.getInstance();
 		DEBUG = prefs.getBoolean("DEBUG", false);
 		
-		initCamera("Primary Camera", 0);
-		initCamera("Secondary Camera", 1);
-		
 		RobotMap.robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
+		
+		RobotMap.pixy.init(2);
+		RobotMap.pixy.setLED(2, 100, 66);
 	}
 
 	/**
@@ -78,17 +80,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		/*System.out.println(ultrasonic.getInches());
-		Color c = colorCommand.getClosestColor(colorCommand.getColor());
-		//if (c.equals(oldColor)) return;
-		if (!refOI.controller.getStartButtonPressed()) return;
-		if (c==Color.GREEN) System.out.println("Green");
-		if (c==Color.RED) System.out.println("Red");
-		if (c==Color.BLUE) System.out.println("Blue");
-		if (c==Color.YELLOW) System.out.println("Yellow");
-		if (c==Color.BLACK) System.out.println("Black");
-		if (c==Color.WHITE) System.out.println("White");
-		oldColor = c;*/
 	}
 
 	/**
@@ -128,6 +119,9 @@ public class Robot extends TimedRobot {
 		if (intakeCommand != null) {
 			intakeCommand.start();
 		}
+		if (outtakeCommand != null) {
+			outtakeCommand.start();
+		}
 	}
 
 	/**
@@ -136,13 +130,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	}
-
-	public void initCamera(String name, int ID) {
-		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(ID);
-		cam.setFPS(60);
-		cam.setResolution(360, 360);
-		CameraServer.getInstance().addServer(name, ID).setSource(cam);
 	}
 
 	/**
