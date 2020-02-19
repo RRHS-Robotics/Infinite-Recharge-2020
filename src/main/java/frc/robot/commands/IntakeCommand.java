@@ -4,12 +4,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class IntakeCommand extends Command {
+	private boolean invert;
+
 	public IntakeCommand() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
 	}
 	protected void execute() {
-		Robot.intakeSubsystem.spin(Robot.refOI.intakeButton());
+		if (Robot.refOI.intakeReverseButton()) invert=!invert;
+		Robot.intakeSubsystem.spin((invert?1:-1)*Robot.refOI.intakeButton());
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

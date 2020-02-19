@@ -9,11 +9,9 @@ public class IntakeSubsystem extends Subsystem {
 		setDefaultCommand(new IntakeCommand());
 	}
 	public void spin(Double speed) {
-		System.out.println("Spin");
 		RobotMap.intakeMotor.set(speed*.33);
 	}
 	public void stop() {
-		System.out.println("Stop");
 		RobotMap.intakeMotor.stopMotor();
 	}
 }

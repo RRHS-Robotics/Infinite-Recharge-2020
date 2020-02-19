@@ -41,10 +41,10 @@ public class RobotMap {
 	public static DifferentialDrive robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
 	//END Drive Motor Map
 	
-	public static Spark colorMotor = new Spark(0);
-	public static Spark intakeMotor = new Spark(1);
-	public static Spark outtakeMotor = new Spark(2);
-	public static Spark outtakeMotor0 = new Spark(3);
+	public static Spark colorMotor = new Spark(1);
+	public static Spark intakeMotor = new Spark(0);
+	public static Spark leftOuttakeMotor = new Spark(9);
+	public static Spark rightOuttakeMotor = new Spark(8);
 	
 	public static ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 	public static AnalogInput ultrasonic = new AnalogInput(2);

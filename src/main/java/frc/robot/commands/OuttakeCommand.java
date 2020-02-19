@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class OuttakeCommand extends Command {
+
 	public OuttakeCommand() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.outtakeSubsystem);
