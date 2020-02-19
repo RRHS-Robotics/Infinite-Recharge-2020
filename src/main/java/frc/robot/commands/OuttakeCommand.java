@@ -10,7 +10,7 @@ public class OuttakeCommand extends Command {
     	requires(Robot.outtakeSubsystem);
 	}
 	protected void execute() {
-		Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton());
+		Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton()*.58);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

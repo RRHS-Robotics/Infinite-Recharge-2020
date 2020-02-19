@@ -10,7 +10,7 @@ public class WheelSubsystem extends Subsystem {
 	}
 	public void spin() {
 		System.out.println("Spin");
-		RobotMap.colorMotor.set(.7);
+		RobotMap.colorMotor.set(.4);
 	}
 	public void stop() {
 		System.out.println("Stop");
