@@ -11,7 +11,7 @@ public class IntakeSubsystem extends Subsystem {
 	public IntakeSubsystem() {}
 	
 	public void spin(Double speed) {
-		RobotMap.intakeMotor.set(speed*.33);
+		RobotMap.intakeMotor.set(speed*1);
 	}
 	public void stop() {
 		RobotMap.intakeMotor.stopMotor();
