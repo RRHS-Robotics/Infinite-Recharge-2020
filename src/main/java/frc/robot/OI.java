@@ -79,7 +79,7 @@ public class OI {
 	public boolean intakeReverseButton() {
 		return controller.getBumperPressed(Hand.kLeft);
 	}
-	public Double outtakeButton() {
+	public double outtakeButton() {
 		return controller.getTriggerAxis(Hand.kRight);
 	}
 }

@@ -5,12 +5,23 @@ import frc.robot.Robot;
 
 public class OuttakeCommand extends Command {
 
+	private double speed = -1;
+
 	public OuttakeCommand() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.outtakeSubsystem);
 	}
+	public OuttakeCommand(double speed, long time) {
+        // Use requires() here to declare subsystem dependencies
+    	requires(Robot.intakeSubsystem);
+    	this.speed  = speed;
+    	setTimeout(time);
+	}
+	
 	protected void execute() {
-		Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton());
+		if (speed == -1) {
+			Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton());
+		} else Robot.outtakeSubsystem.spin(speed);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

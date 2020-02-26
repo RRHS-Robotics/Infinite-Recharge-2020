@@ -8,6 +8,8 @@ public class IntakeSubsystem extends Subsystem {
 	@Override protected void initDefaultCommand() {
 		setDefaultCommand(new IntakeCommand());
 	}
+	public IntakeSubsystem() {}
+	
 	public void spin(Double speed) {
 		RobotMap.intakeMotor.set(speed*.33);
 	}
