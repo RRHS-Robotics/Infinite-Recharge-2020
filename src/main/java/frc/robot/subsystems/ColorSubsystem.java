@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.ColorCommand;
 
-public class WheelSubsystem extends Subsystem {
+public class ColorSubsystem extends Subsystem {
 	@Override protected void initDefaultCommand() {
 		setDefaultCommand(new ColorCommand());
 	}
 	public void spin() {
 		System.out.println("Spin");
-		RobotMap.colorMotor.set(1);
+		RobotMap.colorMotor.set(.4);
 	}
 	public void stop() {
 		System.out.println("Stop");

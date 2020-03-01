@@ -9,6 +9,8 @@ package frc.robot;
 
 import java.awt.Color;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,11 +23,10 @@ import frc.robot.commands.ColorCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.OuttakeCommand;
+import frc.robot.subsystems.ColorSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.OuttakeSubsystem;
-import frc.robot.subsystems.UltrasonicSubsystem;
-import frc.robot.subsystems.WheelSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,8 +37,7 @@ import frc.robot.subsystems.WheelSubsystem;
  */
 public class Robot extends TimedRobot {
 	public static final DriveTrainSubsystem DriveTrain = new DriveTrainSubsystem();
-	public static final WheelSubsystem wheelSubsystem = new WheelSubsystem();
-	public static final UltrasonicSubsystem ultrasonic = new UltrasonicSubsystem();
+	public static final ColorSubsystem wheelSubsystem = new ColorSubsystem();
 	public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 	public static final OuttakeSubsystem outtakeSubsystem = new OuttakeSubsystem();
 	public static OI refOI = new OI();
@@ -64,6 +64,9 @@ public class Robot extends TimedRobot {
 		prefs = Preferences.getInstance();
 		DEBUG = prefs.getBoolean("DEBUG", false);
 		
+		initCamera("Primary Camera", 0);
+		initCamera("Secondary Camera", 1);
+		
 		RobotMap.robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
 		
 		autoChooser.setDefaultOption("Left", "left");
@@ -88,6 +91,7 @@ public class Robot extends TimedRobot {
 	
 	@Override
 	public void disabledPeriodic() {
+		System.out.println(1);
 		Scheduler.getInstance().run();
 	}
 
@@ -108,6 +112,13 @@ public class Robot extends TimedRobot {
 		if (selectedAutonomousCommand!=null) {
 			selectedAutonomousCommand.start();
 		}
+	}
+	
+	public void initCamera(String name, int ID) {
+		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(ID);
+		cam.setFPS(60);
+		cam.setResolution(360, 360);
+		CameraServer.getInstance().addServer(name, ID).setSource(cam);
 	}
 
 	/**
