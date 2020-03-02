@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutoModeCommandGroup;
@@ -67,7 +66,7 @@ public class Robot extends TimedRobot {
 		initCamera("Primary Camera", 0);
 		initCamera("Secondary Camera", 1);
 		
-		RobotMap.robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
+		//RobotMap.robotDriveMain = new DifferentialDrive(RobotMap.leftDrive, RobotMap.rightDrive);
 		
 		autoChooser.setDefaultOption("Left", "left");
 		autoChooser.addOption("Middle", "middle");
@@ -91,7 +90,6 @@ public class Robot extends TimedRobot {
 	
 	@Override
 	public void disabledPeriodic() {
-		System.out.println(1);
 		Scheduler.getInstance().run();
 	}
 

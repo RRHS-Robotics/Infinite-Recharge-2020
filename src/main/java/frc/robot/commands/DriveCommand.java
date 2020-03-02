@@ -41,7 +41,7 @@ public class DriveCommand extends Command {
 		} else {
 			Robot.DriveTrain.drive( 
 				(invert?-1:1) * -Robot.refOI.controller.getY(Hand.kLeft)*prefs.getDouble("Percent of Max Speed (0.0 to 1.0)", 1.0), 
-				Robot.refOI.controller.getX(Hand.kLeft)*prefs.getDouble("Percent of Max Speed (0.0 to 1.0)", 1.0));
+				Robot.refOI.controller.getX(Hand.kLeft)*prefs.getDouble("Percent of Max Speed (0.0 to 1.0)", .6));
 		}
     }
 

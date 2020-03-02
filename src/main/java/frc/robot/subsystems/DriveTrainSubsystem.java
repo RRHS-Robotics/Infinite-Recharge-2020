@@ -18,7 +18,8 @@ public class DriveTrainSubsystem extends Subsystem {
     }
     
     public void drive(Double speed, Double rotation) {
-		RobotMap.robotDriveMain.arcadeDrive(speed, rotation); // drive forwards half speed
+        RobotMap.robotDriveMain.arcadeDrive(speed, rotation); // drive forwards half speed
+        RobotMap.robotDriveMain.feed();
     }
     
     public void stop() {

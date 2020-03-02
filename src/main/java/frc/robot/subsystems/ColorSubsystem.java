@@ -9,11 +9,9 @@ public class ColorSubsystem extends Subsystem {
 		setDefaultCommand(new ColorCommand());
 	}
 	public void spin() {
-		System.out.println("Spin");
 		RobotMap.colorMotor.set(.4);
 	}
 	public void stop() {
-		System.out.println("Stop");
 		RobotMap.colorMotor.stopMotor();
 	}
 }

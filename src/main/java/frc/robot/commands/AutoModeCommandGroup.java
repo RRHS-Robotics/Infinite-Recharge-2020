@@ -12,11 +12,9 @@ public class AutoModeCommandGroup extends CommandGroup {
 				addSequential(new DriveCommand(0.1, .25, .1));
 				addSequential(new DriveCommand(0.1, 0, .1));
 			case "middle":
-				addSequential(new DriveCommand(0.1, 0, .1));
-				addSequential(new DriveCommand(0.1, .25, .1));
-				addSequential(new DriveCommand(0.1, 0, .1));
-				addSequential(new DriveCommand(0.1, .25, .1));
-				addSequential(new DriveCommand(0.1, 0, .1));
+				//addSequential(new DriveCommand(0.1, 0, .1));
+				addSequential(new IntakeCommand(.5, 5));
+				addSequential(new OuttakeCommand(1, 5));
 			case "right":
 				addSequential(new DriveCommand(0.1, 0, .1));
 				addSequential(new DriveCommand(0.1, .25, .1));

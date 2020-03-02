@@ -11,7 +11,7 @@ public class OuttakeCommand extends Command {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.outtakeSubsystem);
 	}
-	public OuttakeCommand(double speed, long time) {
+	public OuttakeCommand(double speed, double time) {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     	this.speed  = speed;
@@ -20,7 +20,7 @@ public class OuttakeCommand extends Command {
 	
 	protected void execute() {
 		if (speed == -1) {
-			Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton());
+			Robot.outtakeSubsystem.spin(Robot.refOI.outtakeButton()*.5);
 		} else Robot.outtakeSubsystem.spin(speed);
 	}
 	

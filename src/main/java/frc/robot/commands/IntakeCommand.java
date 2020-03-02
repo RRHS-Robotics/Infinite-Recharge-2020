@@ -11,7 +11,7 @@ public class IntakeCommand extends Command {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
 	}
-	public IntakeCommand(double speed, long time) {
+	public IntakeCommand(double speed, double time) {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.intakeSubsystem);
     	this.speed = speed;
