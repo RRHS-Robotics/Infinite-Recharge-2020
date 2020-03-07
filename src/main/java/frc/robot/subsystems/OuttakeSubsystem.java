@@ -7,7 +7,6 @@ import frc.robot.commands.OuttakeCommand;
 public class OuttakeSubsystem extends Subsystem {
 	@Override protected void initDefaultCommand() {
 		setDefaultCommand(new OuttakeCommand());
-		
 	}
 	public void spin(Double speed) {
 		RobotMap.leftOuttakeMotor.set(speed);

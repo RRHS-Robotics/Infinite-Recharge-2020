@@ -111,12 +111,17 @@ public class Robot extends TimedRobot {
 			selectedAutonomousCommand.start();
 		}
 	}
+
+	@Override public void robotPeriodic() {
+		Scheduler.getInstance().run();
+	}
 	
 	public void initCamera(String name, int ID) {
+		System.out.println(name);
 		UsbCamera cam = CameraServer.getInstance().startAutomaticCapture(ID);
 		cam.setFPS(60);
 		cam.setResolution(360, 360);
-		CameraServer.getInstance().addServer(name, ID).setSource(cam);
+		CameraServer.getInstance().addServer(name, ID+8080).setSource(cam);
 	}
 
 	/**

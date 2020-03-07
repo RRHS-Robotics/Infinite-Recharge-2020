@@ -10,6 +10,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Timer;
@@ -42,5 +43,5 @@ public class RobotMap {
 	public static Spark leftOuttakeMotor = new Spark(9);
 	public static Spark rightOuttakeMotor = new Spark(8);
 	
-	public static ColorSensorV3 colorSensor;// = new ColorSensorV3(I2C.Port.kOnboard);
+	public static ColorSensorV3 colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
 }

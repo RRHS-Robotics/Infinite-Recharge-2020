@@ -5,21 +5,22 @@ import frc.robot.Robot;
 
 public class IntakeCommand extends Command {
 	private boolean invert;
-	private double speed = -1;
+	private double speed;
 
 	public IntakeCommand() {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.intakeSubsystem);
+		requires(Robot.intakeSubsystem);
+		this.speed = -2;
 	}
 	public IntakeCommand(double speed, double time) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.intakeSubsystem);
+		requires(Robot.intakeSubsystem);
     	this.speed = speed;
     	setTimeout(time);
 	}
 	
 	protected void execute() {
-		if (speed==-1) {
+		if (speed==-2) {
 			if (Robot.refOI.intakeReverseButton()) invert=!invert;
 			Robot.intakeSubsystem.spin((invert?1:-1)*Robot.refOI.intakeButton());
 		} else Robot.intakeSubsystem.spin(speed);
